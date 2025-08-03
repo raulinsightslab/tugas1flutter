@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 class Tugas2Flutter extends StatelessWidget {
@@ -14,7 +12,7 @@ class Tugas2Flutter extends StatelessWidget {
           style: TextStyle(
             fontSize: 40,
             color: Colors.white,
-            fontFamily: "Bitcount",
+            fontFamily: "Bitcount", // Judul pakai Bitcount
           ),
         ),
         backgroundColor: const Color.fromARGB(255, 1, 25, 240),
@@ -22,113 +20,144 @@ class Tugas2Flutter extends StatelessWidget {
       ),
 
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SizedBox(height: 30),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 3),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                (
-                //Baris 1
-                Center(
-                  child: Text(
-                    "Raul Akbarullah",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontFamily: "Orbitron",
-                      fontStyle: FontStyle.normal,
-                    ),
-                  ),
-                )),
-
-                //Baris 2
-                Container(
-                  width: 400,
-                  padding: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 1, 25, 240),
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.black, width: 3),
-                  ),
-                  child: Row(
-                    children: [
-                      Icon(Icons.email, color: Colors.white),
-                      SizedBox(width: 10),
-                      Spacer(),
-                      Text(
-                        "raulakbar1905@gmail.com",
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontFamily: "Orbitron",
-                          color: Colors.white,
-                        ),
-                      ),
-                    ], //children-icon
-                  ),
-                ),
-
-                //Baris 3
-                Container(
-                  width: 400,
-                  padding: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 1, 25, 240),
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.black, width: 3),
-                  ),
-                  child: Row(
-                    children: [
-                      Icon(Icons.phone, color: Colors.white),
-                      SizedBox(width: 10),
-                      Spacer(),
-                      Text(
-                        "081385258648",
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontFamily: "Orbitron",
-                          color: Colors.white,
-                        ),
-                      ),
-                      Spacer(),
-                    ], //children-icon
-                  ),
-                ),
-                // //Baris 4
-                // Expanded(
-                //   child: Row(
-                //     children: [
-                //         Container(
-                //   width: 400,
-                //   padding: EdgeInsets.all(20),
-                //   decoration: BoxDecoration(
-                //     color: Color.fromARGB(255, 1, 25, 240),
-                //     borderRadius: BorderRadius.circular(10),
-                //     border: Border.all(color: Colors.black, width: 3),
-                //   ),
-                //   child: Row(
-                //     children: [
-                //       Icon(Icons.phone, color: Colors.white),
-                //       SizedBox(width: 10),
-                //       Spacer(),
-                //       Text(
-                //         "081385258648",
-                //         style: TextStyle(
-                //           fontSize: 15,
-                //           fontFamily: "Orbitron",
-                //           color: Colors.white,
-                //         ),
-                //       ),
-                //       Spacer(),
-                //     ], //children-icon
-                //   ),
-                // ),
-                //     ],
-                //   ),
-                // ),
-              ], //children-column
+          //foto profile
+          Center(
+            child: CircleAvatar(
+              radius: 150,
+              backgroundImage: AssetImage('assets/images/poto_1.jpg'),
             ),
           ),
+          SizedBox(height: 55),
+
+          // Baris 1
+          Center(
+            child: Text(
+              "Raul Akbarullah",
+              style: TextStyle(
+                fontSize: 28,
+                fontFamily: "Orbitron", // Nama pakai Orbitron
+                fontStyle: FontStyle.normal,
+              ),
+            ),
+          ),
+
+          SizedBox(height: 20),
+
+          // Baris 2: Email
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Container(
+              padding: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 1, 25, 240),
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: Colors.black, width: 3),
+              ),
+              child: Row(
+                children: [
+                  Icon(Icons.email, color: Colors.white),
+                  SizedBox(width: 10),
+                  Text(
+                    "raulakbar1905@gmail.com",
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontFamily: "Orbitron",
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+          // Baris 3: Nomor HP
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Container(
+              padding: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 1, 25, 240),
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: Colors.black, width: 3),
+              ),
+              child: Row(
+                children: [
+                  Icon(Icons.phone, color: Colors.white),
+                  SizedBox(width: 10),
+                  Text(
+                    "081385258648",
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontFamily: "Orbitron",
+                      color: Colors.white,
+                    ),
+                  ),
+                  Spacer(), // Biar rata kiri-kanan
+                ],
+              ),
+            ),
+          ),
+
+          // Baris 4: Kotak Postingan & Followers
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    padding: EdgeInsets.all(16),
+                    color: Colors.blueAccent,
+                    child: Center(
+                      child: Text(
+                        "Postingan",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: "Orbitron",
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 8),
+                Expanded(
+                  child: Container(
+                    padding: EdgeInsets.all(16),
+                    color: Colors.purpleAccent,
+                    child: Center(
+                      child: Text(
+                        "Followers",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: "Orbitron",
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          // Baris 5: Deskripsi Profil
+          SizedBox(height: 16),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Text(
+              "Halo, saya Raul Akbarullah, mahasiswa Sistem Informasi Kelautan UPI dengan semangat menggabungkan teknologi dan kelautan. Saat ini saya mendalami Flutter untuk mengembangkan aplikasi inovatif yang membantu riset, analisis data, dan pengelolaan ekosistem laut.",
+              style: TextStyle(fontSize: 16, fontFamily: "Orbitron"),
+              textAlign: TextAlign.justify,
+            ),
+          ),
+
+          Spacer(),
+
+          // Baris 6
+          Container(height: 40, color: Colors.blueAccent),
         ],
       ),
     );
