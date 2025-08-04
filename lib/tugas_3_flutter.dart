@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Tugas3Flutter extends StatelessWidget {
   const Tugas3Flutter({super.key});
@@ -9,12 +10,7 @@ class Tugas3Flutter extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           "Form & Gallery",
-          style: TextStyle(
-            fontSize: 30,
-            fontStyle: FontStyle.italic,
-            color: Colors.white,
-            fontFamily: "Orbitron",
-          ),
+          style: GoogleFonts.orbitron(fontSize: 40, color: Colors.white),
         ),
         backgroundColor: const Color.fromARGB(255, 28, 42, 163),
         centerTitle: true,
@@ -31,58 +27,130 @@ class Tugas3Flutter extends StatelessWidget {
             ),
           ),
           SizedBox(height: 40),
-          
-          //buat nyoba
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-           
-           child: Container(
-              
-              padding: EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: Colors.black, width: 3),
-                ),
-              child:
-              
-              TextField(decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: "Masukkan Nama Anda",
-            ),) ,
-                
-                
+
+          //Buat Judul
+          Center(
+            child: Text(
+              "Pengisian Formulir Anggota HIMATASKA",
+              style: TextStyle(
+                fontSize: 30,
+                color: Colors.black,
+                fontFamily: "Orbitron",
+              ),
             ),
           ),
 
           //Nomor 1
-          Row(children: [Text("Nama")]),
-          TextField(
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: "Masukkan Nama Anda",
+          //buat nama
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Container(
+              padding: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  color: Color.fromARGB(255, 28, 42, 163),
+                  width: 2,
+                ),
+              ),
+              child: TextField(
+                decoration: InputDecoration(
+                  labelText: "Nama",
+                  hintText: "Masukkan Nama Lengkap",
+                  prefixIcon: Icon(Icons.person),
+                  border: OutlineInputBorder(),
+                ),
+              ),
             ),
           ),
-          Row(children: [Text("Email")]),
-          TextField(
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: "Masukkan Email Anda",
+
+          //buat email
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Container(
+              padding: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  color: Color.fromARGB(255, 28, 42, 163),
+                  width: 2,
+                ),
+              ),
+              child: TextField(
+                decoration: InputDecoration(
+                  labelText: "Email",
+                  hintText: "Masukkan Email Aktif",
+                  prefixIcon: Icon(Icons.email),
+                  border: OutlineInputBorder(),
+                ),
+              ),
             ),
           ),
-          Row(children: [Text("No. HP")]),
-          TextField(
-            keyboardType: TextInputType.number,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: "Masukkan No. Hp Anda",
+
+          //buat no hp
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+
+            child: Container(
+              padding: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  color: Color.fromARGB(255, 28, 42, 163),
+                  width: 2,
+                ),
+              ),
+              child: TextField(
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "No Handphone",
+                  hintText: "Masukkan No. Handphone Aktif",
+                  prefixIcon: Icon(Icons.phone_rounded),
+                ),
+              ),
             ),
           ),
-          Row(children: [Text("Deskripsi")]),
-          TextField(
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: "Masukkan Deskripsi diri",
+
+          // buat deskripsi
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Container(
+              padding: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  color: Color.fromARGB(255, 28, 42, 163),
+                  width: 2,
+                ),
+              ),
+              child: TextField(
+                keyboardType: TextInputType.multiline,
+                minLines: 4,
+                maxLines: null,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Deskripsi",
+                  hintText: "Ceritakan Tentang Diri Anda",
+                  prefixIcon: Icon(Icons.description),
+                  alignLabelWithHint: true,
+                ),
+              ),
+            ),
+          ),
+
+          Center(
+            child: Text(
+              "Kategori Galery",
+              style: TextStyle(
+                fontSize: 30,
+                color: Colors.black,
+                fontFamily: "Orbitron",
+              ),
             ),
           ),
 
@@ -94,20 +162,31 @@ class Tugas3Flutter extends StatelessWidget {
             mainAxisSpacing: 4,
             crossAxisSpacing: 4,
             children: [
+              //stack 1
               Stack(
                 children: [
                   Container(
                     height: 250,
-                    width: 250,
+                    width: double.infinity,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [Colors.red, Colors.orange],
                       ),
                     ),
+                    child: Center(
+                      child: Text(
+                        "Kegiatan",
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontFamily: "Orbitron",
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                   ),
-                  Center(child: Text("satu")),
                 ],
               ),
+              //stack 2
               Stack(
                 children: [
                   Container(
@@ -118,10 +197,20 @@ class Tugas3Flutter extends StatelessWidget {
                         colors: [Color(0xFF00c6ff), Color(0xFF0072ff)],
                       ),
                     ),
+                    child: Center(
+                      child: Text(
+                        "Prestasi",
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontFamily: "Orbitron",
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                   ),
-                  Center(child: Text("dua")),
                 ],
               ),
+              //stack 3
               Stack(
                 children: [
                   Container(
@@ -132,10 +221,20 @@ class Tugas3Flutter extends StatelessWidget {
                         colors: [Color(0xFF6a11cb), Color(0xFF2575fc)],
                       ),
                     ),
+                    child: Center(
+                      child: Text(
+                        "Event",
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontFamily: "Orbitron",
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                   ),
-                  Center(child: Text("tiga")),
                 ],
               ),
+              //stack 4
               Stack(
                 children: [
                   Container(
@@ -146,10 +245,20 @@ class Tugas3Flutter extends StatelessWidget {
                         colors: [Color(0xFF56ab2f), Color(0xFFa8e063)],
                       ),
                     ),
+                    child: Center(
+                      child: Text(
+                        "Dokumentasi",
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontFamily: "Orbitron",
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                   ),
-                  Center(child: Text("empat")),
                 ],
               ),
+              //stack 5
               Stack(
                 children: [
                   Container(
@@ -160,10 +269,20 @@ class Tugas3Flutter extends StatelessWidget {
                         colors: [Color(0xFFff758c), Color(0xFFff7eb3)],
                       ),
                     ),
+                    child: Center(
+                      child: Text(
+                        "Pengurus",
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontFamily: "Orbitron",
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                   ),
-                  Center(child: Text("lima")),
                 ],
               ),
+              //stack 6
               Stack(
                 children: [
                   Container(
@@ -174,8 +293,17 @@ class Tugas3Flutter extends StatelessWidget {
                         colors: [Color(0xFF00f260), Color(0xFF0575E6)],
                       ),
                     ),
+                    child: Center(
+                      child: Text(
+                        "Anggota",
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontFamily: "Orbitron",
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                   ),
-                  Center(child: Text("enam")),
                 ],
               ),
             ],
