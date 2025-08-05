@@ -23,14 +23,15 @@ class Tugas2Flutter extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SizedBox(height: 30),
-          //foto profile
+          
+          // Foto profile
           Center(
             child: CircleAvatar(
-              radius: 150,
+              radius: 80,
               backgroundImage: AssetImage('assets/images/poto_1.jpg'),
             ),
           ),
-          SizedBox(height: 55),
+          SizedBox(height: 40),
 
           // Baris 1
           Center(
@@ -46,7 +47,7 @@ class Tugas2Flutter extends StatelessWidget {
 
           SizedBox(height: 20),
 
-          // Baris 2: Email
+          // Baris 2
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Container(
@@ -73,7 +74,7 @@ class Tugas2Flutter extends StatelessWidget {
             ),
           ),
 
-          // Baris 3: Nomor HP
+          // Baris 3
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Container(
@@ -95,13 +96,13 @@ class Tugas2Flutter extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
-                  Spacer(), // Biar rata kiri-kanan
+                  Spacer(), 
                 ],
               ),
             ),
           ),
 
-          // Baris 4: Kotak Postingan & Followers
+          // Baris 4
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Row(
@@ -143,13 +144,14 @@ class Tugas2Flutter extends StatelessWidget {
             ),
           ),
 
-          // Baris 5: Deskripsi Profil
+          // Baris 5
           SizedBox(height: 16),
-          Padding(
+          Padding(  
+            
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: Text(
               "Halo, saya Raul Akbarullah, mahasiswa Sistem Informasi Kelautan UPI dengan semangat menggabungkan teknologi dan kelautan. Saat ini saya mendalami Flutter untuk mengembangkan aplikasi inovatif yang membantu riset, analisis data, dan pengelolaan ekosistem laut.",
-              style: TextStyle(fontSize: 16, fontFamily: "Orbitron"),
+              style: TextStyle(fontSize: 13, fontFamily: "Orbitron"),
               textAlign: TextAlign.justify,
             ),
           ),
@@ -157,7 +159,20 @@ class Tugas2Flutter extends StatelessWidget {
           Spacer(),
 
           // Baris 6
-          Container(height: 40, color: Colors.blueAccent),
+          Container(
+            height: 50, 
+            color: Colors.blueAccent,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Icon(Icons.supervised_user_circle_outlined, size: 35),
+                Icon(Icons.home, size: 35),
+                Icon(Icons.add, size: 35),
+                Icon(Icons.search, size: 35),
+              
+              ],
+            ),
+            ),
         ],
       ),
     );
