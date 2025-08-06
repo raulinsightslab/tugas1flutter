@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tugas1flutter/start.dart';
+import 'package:tugas1flutter/Tugas_5/tugas_5_flutter.dart';
+import 'package:tugas1flutter/Tugas_1/start.dart';
 import 'package:tugas1flutter/tugas_2_flutter.dart';
 import 'package:tugas1flutter/tugas_3_flutter.dart';
+import 'package:tugas1flutter/tugas_4_flutter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,7 +38,7 @@ class MyApp extends StatelessWidget {
           seedColor: const Color.fromARGB(255, 3, 3, 3),
         ),
       ),
-      home: Tugas3Flutter(),
+      home: Tugas5Flutter(),
     );
   }
 }

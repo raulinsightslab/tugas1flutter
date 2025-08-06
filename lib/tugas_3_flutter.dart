@@ -28,17 +28,39 @@ class Tugas3Flutter extends StatelessWidget {
           ),
           SizedBox(height: 40),
 
-          //Buat Judul
-          Center(
-            child: Text(
-              "Pengisian Formulir Anggota HIMATASKA",
-              style: TextStyle(
-                fontSize: 30,
-                color: Colors.black,
-                fontFamily: "Orbitron",
-              ),
+          //Buat Judul       
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal:20),
+                  child: Text(
+                    "Pengisian Formulir Anggota",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontFamily: "Orbitron",
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
+             Column(
+              
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    "HIMATASKA",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontFamily: "Orbitron",
+                    ),
+                  ),
+                ),
+              ],
+            ),
+        
 
           //Nomor 1
           //buat nama
@@ -147,7 +169,7 @@ class Tugas3Flutter extends StatelessWidget {
             child: Text(
               "Kategori Galery",
               style: TextStyle(
-                fontSize: 30,
+                fontSize: 20,
                 color: Colors.black,
                 fontFamily: "Orbitron",
               ),
@@ -177,7 +199,7 @@ class Tugas3Flutter extends StatelessWidget {
                       child: Text(
                         "Kegiatan",
                         style: TextStyle(
-                          fontSize: 30,
+                          fontSize: 15,
                           fontFamily: "Orbitron",
                           color: Colors.white,
                         ),
@@ -201,7 +223,7 @@ class Tugas3Flutter extends StatelessWidget {
                       child: Text(
                         "Prestasi",
                         style: TextStyle(
-                          fontSize: 30,
+                          fontSize: 15,
                           fontFamily: "Orbitron",
                           color: Colors.white,
                         ),
@@ -225,7 +247,7 @@ class Tugas3Flutter extends StatelessWidget {
                       child: Text(
                         "Event",
                         style: TextStyle(
-                          fontSize: 30,
+                          fontSize: 20,
                           fontFamily: "Orbitron",
                           color: Colors.white,
                         ),
@@ -249,7 +271,7 @@ class Tugas3Flutter extends StatelessWidget {
                       child: Text(
                         "Dokumentasi",
                         style: TextStyle(
-                          fontSize: 30,
+                          fontSize: 15,
                           fontFamily: "Orbitron",
                           color: Colors.white,
                         ),
@@ -273,7 +295,7 @@ class Tugas3Flutter extends StatelessWidget {
                       child: Text(
                         "Pengurus",
                         style: TextStyle(
-                          fontSize: 30,
+                          fontSize: 15,
                           fontFamily: "Orbitron",
                           color: Colors.white,
                         ),
@@ -297,7 +319,7 @@ class Tugas3Flutter extends StatelessWidget {
                       child: Text(
                         "Anggota",
                         style: TextStyle(
-                          fontSize: 30,
+                          fontSize: 15,
                           fontFamily: "Orbitron",
                           color: Colors.white,
                         ),
