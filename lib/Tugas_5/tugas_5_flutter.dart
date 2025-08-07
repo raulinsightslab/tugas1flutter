@@ -8,24 +8,36 @@ class Tugas5Flutter extends StatefulWidget {
 }
 
 class _Tugas5FlutterState extends State<Tugas5Flutter> {
-  String nama = "Nama saya Raul Akbarullah"; // Data nama
-  bool showName = false; // Status untuk menampilkan teks atau tidak
+  String name = "Hello"; 
+  bool showName = false;
   bool showLike = false;
-  String deskripsi = "bla bla bla";
+  String deskripsi = "Am i worth to be loved?";
   bool showDesk = false;
   int count = 0;
+  bool showKotakTeks = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Halaman Interaktif')),
+      appBar: AppBar(
+        title: Text(
+          'Interactive Page',
+          style: TextStyle(
+            fontFamily: "Bitcount",
+            fontSize: 32,
+            color: Colors.black,
+          ),
+        ),
+        backgroundColor: Colors.white,
+        centerTitle: true,
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
-            count++;
+            count--;
           });
         },
-        child: Icon(Icons.add),
+        child: Icon(Icons.minimize),
       ),
 
       body: Padding(
@@ -37,14 +49,40 @@ class _Tugas5FlutterState extends State<Tugas5Flutter> {
               ElevatedButton(
                 onPressed: () {
                   setState(() {
-                    showName = !showName; // Toggle status
+                    showName = !showName;
                   });
                 },
-                child: Text(showName ? "Sembunyikan" : "Tampilkan Nama"),
+                child: Text(
+                  showName ? "Hide" : "Show Me",
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.black,
+                    fontFamily: "Orbitron",
+                  ),
+                ),
               ),
               const SizedBox(height: 10),
-              // Tampilkan teks jika showName = true
-              if (showName) Text(nama, style: TextStyle(fontSize: 16)),
+              
+              if (showName)
+              Column (children: [
+                Text(
+                  name,
+                  style: TextStyle(
+                    fontFamily: "Orbitron",
+                    fontSize: 18,
+                    color: Colors.black,
+                  ),
+                ),   
+                SizedBox(height: 20), 
+                Image.asset(
+                'assets/images/image_3.jpg', 
+                width: 90,
+                height: 100,
+                fit: BoxFit.cover,
+              ),
+              ]
+              ),
+
               SizedBox(height: 20),
 
               // 2. LikeButton
@@ -61,7 +99,15 @@ class _Tugas5FlutterState extends State<Tugas5Flutter> {
                     color: showLike ? Colors.red : Colors.grey,
                   ),
 
-                  if (showLike) Text("disukai", style: TextStyle(fontSize: 16)),
+                  if (showLike)
+                    Text(
+                      "Thank You for loving me",
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.black,
+                        fontFamily: "Orbitron",
+                      ),
+                    ),
                   SizedBox(height: 20),
                 ],
               ),
@@ -75,15 +121,29 @@ class _Tugas5FlutterState extends State<Tugas5Flutter> {
                         showDesk = !showDesk;
                       });
                     },
-                    child: const Text("Lihat Selengkapnya"),
+                    child: const Text(
+                      "In full",
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.black,
+                        fontFamily: "Orbitron",
+                      ),
+                    ),
                   ),
                   if (showDesk)
-                    Text("bla bla bla", style: TextStyle(fontSize: 16)),
+                    Text(
+                      "Am i worth to be loved?",
+                      style: TextStyle(
+                        fontFamily: "Orbitron",
+                        fontSize: 15,
+                        color: Colors.black,
+                      ),
+                    ),
                   SizedBox(height: 20),
                 ],
               ),
 
-              //4.
+              //4. Add
               Column(
                 children: [
                   Padding(
@@ -97,14 +157,80 @@ class _Tugas5FlutterState extends State<Tugas5Flutter> {
                           });
                           print(count);
                         },
-                        child: Text("Tambah"),
+                        child: Text(
+                          "Plus",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontFamily: "Orbitron",
+                            fontSize: 18,
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 18),
                   Text(count.toString(), style: TextStyle(fontSize: 18)),
                 ],
               ),
+
+              //5. Inkwell
+              InkWell(
+                onTap: () {
+                  // Saat kotak ditekan
+                  setState(() {
+                    showKotakTeks = !showKotakTeks; 
+                  });
+                  print("Kotak disentuh"); 
+                },
+                child: Container(
+                  width: 200,
+                  height: 100,
+                  color: Colors.blueAccent,
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Touch here",
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                      fontFamily: "Orbitron",
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 10),
+              if (showKotakTeks)
+                Text(
+                  "Kotak disentuh!",
+                  style: TextStyle(color: Colors.black, fontFamily: "Orbitron"),
+                ),
+
+              GestureDetector(
+                onTap: () {
+                  print("Ditekan Sekali");
+                },
+                onDoubleTap: () {
+                  print("Ditekan Dua Kali");
+                },
+
+                onLongPress: () {
+                  print("Tahan Lama");
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  color: Colors.blue,
+                  height: 100,
+                  width: 200,
+                  child: Text(
+                    "Touch Me",
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                      fontFamily: "Orbitron",
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 10),
             ],
           ),
         ),
