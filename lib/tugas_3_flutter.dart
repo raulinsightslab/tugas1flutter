@@ -28,39 +28,37 @@ class Tugas3Flutter extends StatelessWidget {
           ),
           SizedBox(height: 40),
 
-          //Buat Judul       
-            Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal:20),
-                  child: Text(
-                    "Pengisian Formulir Anggota",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
-                      fontFamily: "Orbitron",
-                    ),
+          //Buat Judul
+          Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Text(
+                  "Pengisian Formulir Anggota",
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontFamily: "Orbitron",
                   ),
                 ),
-              ],
-            ),
-             Column(
-              
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Text(
-                    "HIMATASKA",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
-                      fontFamily: "Orbitron",
-                    ),
+              ),
+            ],
+          ),
+          Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Text(
+                  "HIMATASKA",
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontFamily: "Orbitron",
                   ),
                 ),
-              ],
-            ),
-        
+              ),
+            ],
+          ),
 
           //Nomor 1
           //buat nama

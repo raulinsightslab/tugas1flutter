@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:tugas1flutter/Tugas_5/tugas_5_flutter.dart';
-import 'package:tugas1flutter/Tugas_1/start.dart';
-import 'package:tugas1flutter/tugas_2_flutter.dart';
-import 'package:tugas1flutter/tugas_3_flutter.dart';
-import 'package:tugas1flutter/tugas_4_flutter.dart';
+import 'package:tugas1flutter/Tugas_6/tugas_6_flutter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -38,7 +34,7 @@ class MyApp extends StatelessWidget {
           seedColor: const Color.fromARGB(255, 3, 3, 3),
         ),
       ),
-      home: Tugas5Flutter(),
+      home: Tugas6Flutter(),
     );
   }
 }

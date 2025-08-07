@@ -83,6 +83,17 @@ flutter:
         - asset: assets/fonts/Orbitron-Medium.ttf
         - asset: assets/fonts/Orbitron-Regular.ttf
         - asset: assets/fonts/Orbitron-SemiBold.ttf
+    - family: Arimo
+      fonts:
+        - asset: assets/fonts/Arimo-Bold.ttf
+        - asset: assets/fonts/Arimo-BoldItalic.ttf
+        - asset: assets/fonts/Arimo-Italic.ttf
+        - asset: assets/fonts/Arimo-Medium.ttf
+        - asset: assets/fonts/Arimo-MediumItalic.ttf
+        - asset: assets/fonts/Arimo-SemiBold.ttf
+        - asset: assets/fonts/Arimo-Regular.ttf
+        - asset: assets/fonts/Arimo-SemiBoldItalic.ttf
+        
 
     # - family: Trajan Pro
   #     fonts:

@@ -8,7 +8,7 @@ class Tugas5Flutter extends StatefulWidget {
 }
 
 class _Tugas5FlutterState extends State<Tugas5Flutter> {
-  String name = "Hello"; 
+  String name = "Hello";
   bool showName = false;
   bool showLike = false;
   String deskripsi = "Am i worth to be loved?";
@@ -62,26 +62,27 @@ class _Tugas5FlutterState extends State<Tugas5Flutter> {
                 ),
               ),
               const SizedBox(height: 10),
-              
+
               if (showName)
-              Column (children: [
-                Text(
-                  name,
-                  style: TextStyle(
-                    fontFamily: "Orbitron",
-                    fontSize: 18,
-                    color: Colors.black,
-                  ),
-                ),   
-                SizedBox(height: 20), 
-                Image.asset(
-                'assets/images/image_3.jpg', 
-                width: 90,
-                height: 100,
-                fit: BoxFit.cover,
-              ),
-              ]
-              ),
+                Column(
+                  children: [
+                    Text(
+                      name,
+                      style: TextStyle(
+                        fontFamily: "Orbitron",
+                        fontSize: 18,
+                        color: Colors.black,
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Image.asset(
+                      'assets/images/image_3.jpg',
+                      width: 90,
+                      height: 100,
+                      fit: BoxFit.cover,
+                    ),
+                  ],
+                ),
 
               SizedBox(height: 20),
 
@@ -178,9 +179,9 @@ class _Tugas5FlutterState extends State<Tugas5Flutter> {
                 onTap: () {
                   // Saat kotak ditekan
                   setState(() {
-                    showKotakTeks = !showKotakTeks; 
+                    showKotakTeks = !showKotakTeks;
                   });
-                  print("Kotak disentuh"); 
+                  print("Kotak disentuh");
                 },
                 child: Container(
                   width: 200,
