@@ -104,6 +104,7 @@ class _CobaState extends State<Coba> {
                     Text('Password', style: TextStyle(color: Colors.white)),
                     SizedBox(height: 8),
                     TextFormField(
+                      style: TextStyle(color: Colors.white),
                       controller: _passwordController,
                       obscureText: _obscurePassword,
                       decoration: InputDecoration(
@@ -146,7 +147,6 @@ class _CobaState extends State<Coba> {
                             final password = _passwordController.text;
 
                             if (email.isEmpty) {
-                              // ✅ Kasus 1: Email kosong
                               showDialog(
                                 context: context,
                                 builder: (BuildContext context) {
@@ -167,7 +167,6 @@ class _CobaState extends State<Coba> {
                                 },
                               );
                             } else if (password != '123456') {
-                              // ✅ Kasus 2: Password salah
                               showDialog(
                                 context: context,
                                 builder: (BuildContext context) {
@@ -188,7 +187,6 @@ class _CobaState extends State<Coba> {
                                 },
                               );
                             } else {
-                              // ✅ Kasus 3: Login berhasil
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(content: Text('Login Succesful')),
                               );
