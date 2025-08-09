@@ -221,9 +221,37 @@ class _CobaState extends State<Coba> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        _socialButton('assets/images/icon_google.png'),
-                        _socialButton('assets/images/icon_apple.png'),
-                        _socialButton('assets/images/icon_twitter.png'),
+                        ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: WidgetStatePropertyAll(
+                              Colors.black,
+                            ),
+                          ),
+                          onPressed: () {},
+                          child: _socialButton('assets/images/icon_google.png'),
+                        ),
+                        ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: WidgetStatePropertyAll(
+                              Colors.black,
+                            ),
+                          ),
+                          onPressed: () {},
+                          child: _socialButton('assets/images/icon_apple.png'),
+
+                          // _socialButton('assets/images/icon_twitter.png'),
+                        ),
+                        ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: WidgetStatePropertyAll(
+                              Colors.black,
+                            ),
+                          ),
+                          onPressed: () {},
+                          child: _socialButton(
+                            'assets/images/icon_twitter.png',
+                          ),
+                        ),
                       ],
                     ),
                     const SizedBox(height: 40),
