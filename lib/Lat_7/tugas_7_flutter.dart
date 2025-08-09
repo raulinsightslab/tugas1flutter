@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:tugas1flutter/Lat_7/dashboard.dart';
 
-class Coba extends StatefulWidget {
-  const Coba({super.key});
+class Tugas7Flutter extends StatefulWidget {
+  const Tugas7Flutter({super.key});
 
   @override
-  State<Coba> createState() => _CobaState();
+  State<Tugas7Flutter> createState() => _Tugas7FlutterState();
 }
 
-class _CobaState extends State<Coba> {
+class _Tugas7FlutterState extends State<Tugas7Flutter> {
   final _formKey = GlobalKey<FormState>();
   bool _obscurePassword = true;
   final TextEditingController _emailController = TextEditingController();
@@ -143,6 +144,12 @@ class _CobaState extends State<Coba> {
                             backgroundColor: Colors.purpleAccent,
                           ),
                           onPressed: () {
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (context) => Tugas5Flutter(),
+                            //   ),
+                            // );
                             final email = _emailController.text.trim();
                             final password = _passwordController.text;
 
@@ -189,6 +196,12 @@ class _CobaState extends State<Coba> {
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(content: Text('Login Succesful')),
+                              );
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Dashboard(),
+                                ),
                               );
                             }
                           },

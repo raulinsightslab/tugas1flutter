@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tugas1flutter/Tugas_6/nyoba.dart';
-import 'package:tugas1flutter/Tugas_6/tugas_6_flutter.dart';
+import 'package:tugas1flutter/Lat_7/tugas_7_flutter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,7 +34,7 @@ class MyApp extends StatelessWidget {
           seedColor: const Color.fromARGB(255, 3, 3, 3),
         ),
       ),
-      home: Coba(),
+      home: Tugas7Flutter(),
     );
   }
 }
