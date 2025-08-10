@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:tugas1flutter/Tugas_7/input_widget.dart';
+import 'package:tugas1flutter/Tugas_7/checkbox.dart';
+import 'package:tugas1flutter/Tugas_7/Dashboard.dart';
+import 'package:tugas1flutter/Tugas_7/date.dart';
+import 'package:tugas1flutter/Tugas_7/dropdown.dart';
 import 'package:tugas1flutter/Tugas_7/login_page.dart';
+import 'package:tugas1flutter/Tugas_7/switch.dart';
+import 'package:tugas1flutter/Tugas_7/time.dart';
 
 void main() {
   runApp(const MyApp());
@@ -44,7 +49,12 @@ class MyApp extends StatelessWidget {
       initialRoute: "/login",
       routes: {
         "/login": (context) => LoginPage(),
-        '/InputWidget': (context) => InputWidget(),
+        DashboardPage.id: (context) => const DashboardPage(),
+        CheckboxPage.id: (context) => const CheckboxPage(),
+        SwitchPage.id: (context) => const SwitchPage(),
+        DropdownPage.id: (context) => const DropdownPage(),
+        DatePickerPage.id: (context) => const DatePickerPage(),
+        TimePickerPage.id: (context) => const TimePickerPage(),
       },
     );
   }
