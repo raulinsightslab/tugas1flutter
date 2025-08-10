@@ -176,7 +176,7 @@ class Tugas4Flutter extends StatelessWidget {
 
           //Nomor 2
           ListTile(
-            shape: Border.all(),           
+            shape: Border.all(),
             leading: Icon(Icons.checkroom),
             title: Text("T-shirt"),
             subtitle: Text("Rp. 150.000"),
@@ -187,31 +187,26 @@ class Tugas4Flutter extends StatelessWidget {
             title: Text("Sweater"),
             subtitle: Text("Rp. 200.000"),
           ),
-           ListTile(
+          ListTile(
             shape: Border.all(),
             leading: Icon(Icons.key),
             title: Text("Keychain"),
             subtitle: Text("Rp. 15.000"),
           ),
-           ListTile(
+          ListTile(
             shape: Border.all(),
             leading: Icon(Icons.backpack_sharp),
             title: Text("Totebag"),
             subtitle: Text("Rp. 70.000"),
           ),
-           ListTile(
+          ListTile(
             shape: Border.all(),
             leading: Icon(Icons.checkroom_rounded),
             title: Text("Hoodie"),
             subtitle: Text("Rp. 300.000"),
-          )
-          
-         
+          ),
         ],
-
       ),
-
-      
     );
   }
 }

@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:tugas1flutter/Lat_7/dashboard.dart';
+import 'package:tugas1flutter/Tugas_7/input_widget.dart';
+import 'package:tugas1flutter/extension/navigation.dart';
 
-class Tugas7Flutter extends StatefulWidget {
-  const Tugas7Flutter({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<Tugas7Flutter> createState() => _Tugas7FlutterState();
+  State<LoginPage> createState() => _LoginPage();
 }
 
-class _Tugas7FlutterState extends State<Tugas7Flutter> {
+class _LoginPage extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   bool _obscurePassword = true;
   final TextEditingController _emailController = TextEditingController();
@@ -197,12 +198,14 @@ class _Tugas7FlutterState extends State<Tugas7Flutter> {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(content: Text('Login Succesful')),
                               );
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Dashboard(),
-                                ),
-                              );
+                              context.pushNamed(InputWidget.id);
+
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) => InputWidget(),
+                              //   ),
+                              // );
                             }
                           },
                           child: Text(

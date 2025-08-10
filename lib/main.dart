@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tugas1flutter/Lat_7/tugas_7_flutter.dart';
+import 'package:tugas1flutter/Tugas_7/input_widget.dart';
+import 'package:tugas1flutter/Tugas_7/login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,6 +16,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
+        appBarTheme: AppBarTheme(
+          iconTheme: IconThemeData(
+            color: Colors.white, // Semua tombol back jadi putih
+          ),
+        ),
+        datePickerTheme: DatePickerThemeData(backgroundColor: Colors.blue),
         // This is the theme of your application.
         //
         // TRY THIS: Try running your application with "flutter run". You'll see
@@ -34,7 +41,11 @@ class MyApp extends StatelessWidget {
           seedColor: const Color.fromARGB(255, 3, 3, 3),
         ),
       ),
-      home: Tugas7Flutter(),
+      initialRoute: "/login",
+      routes: {
+        "/login": (context) => LoginPage(),
+        '/InputWidget': (context) => InputWidget(),
+      },
     );
   }
 }
