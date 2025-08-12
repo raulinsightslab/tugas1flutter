@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class SwitchPage extends StatefulWidget {
   static const String id = '/switch';
 
-  const SwitchPage({super.key});
+  const SwitchPage({super.key, required bool appBar});
 
   @override
   State<SwitchPage> createState() => _SwitchPageState();
@@ -15,7 +15,7 @@ class _SwitchPageState extends State<SwitchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Mode Gelap')),
+      // appBar: AppBar(title: const Text('Mode Gelap')),
       body: Container(
         color: isDarkMode ? Colors.grey[900] : Colors.white,
         padding: const EdgeInsets.all(16),

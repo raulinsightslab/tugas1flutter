@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:tugas1flutter/Tugas_7/checkbox.dart';
-import 'package:tugas1flutter/Tugas_7/Dashboard.dart';
+import 'package:tugas1flutter/Tugas_8/botnavbar.dart';
 import 'package:tugas1flutter/extension/navigation.dart';
 
 class LoginPage extends StatefulWidget {
@@ -199,7 +198,7 @@ class _LoginPage extends State<LoginPage> {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(content: Text('Login Succesful')),
                               );
-                              context.pushNamed(DashboardPage.id);
+                              context.pushNamed(Botbar.id);
                               // Navigator.push(
                               //   context,
                               //   MaterialPageRoute(

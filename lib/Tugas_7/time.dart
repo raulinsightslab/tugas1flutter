@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class TimePickerPage extends StatefulWidget {
   static const String id = '/timepicker';
@@ -33,7 +32,7 @@ class _TimePickerPageState extends State<TimePickerPage> {
         : '';
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Atur Pengingat')),
+      // appBar: AppBar(title: const Text('Atur Pengingat')),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(

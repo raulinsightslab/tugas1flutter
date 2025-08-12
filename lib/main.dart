@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tugas1flutter/Tugas_7/checkbox.dart';
-import 'package:tugas1flutter/Tugas_7/Dashboard.dart';
-import 'package:tugas1flutter/Tugas_7/date.dart';
-import 'package:tugas1flutter/Tugas_7/dropdown.dart';
 import 'package:tugas1flutter/Tugas_7/login_page.dart';
-import 'package:tugas1flutter/Tugas_7/switch.dart';
-import 'package:tugas1flutter/Tugas_7/time.dart';
+import 'package:tugas1flutter/Tugas_8/botnavbar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,12 +16,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          iconTheme: IconThemeData(
-            color: Colors.white, // Semua tombol back jadi putih
-          ),
-        ),
-        datePickerTheme: DatePickerThemeData(backgroundColor: Colors.blue),
+        appBarTheme: AppBarTheme(iconTheme: IconThemeData(color: Colors.white)),
+        datePickerTheme: DatePickerThemeData(backgroundColor: Colors.white),
         // This is the theme of your application.
         //
         // TRY THIS: Try running your application with "flutter run". You'll see
@@ -49,12 +40,16 @@ class MyApp extends StatelessWidget {
       initialRoute: "/login",
       routes: {
         "/login": (context) => LoginPage(),
-        DashboardPage.id: (context) => const DashboardPage(),
-        CheckboxPage.id: (context) => const CheckboxPage(),
-        SwitchPage.id: (context) => const SwitchPage(),
-        DropdownPage.id: (context) => const DropdownPage(),
-        DatePickerPage.id: (context) => const DatePickerPage(),
-        TimePickerPage.id: (context) => const TimePickerPage(),
+        // DashboardPage.id: (context) => DashboardPage(),
+        Botbar.id: (context) => Botbar(),
+
+        // DashboardPage.id: (context) => const DashboardPage(),
+        // CheckboxPage.id: (context) => const CheckboxPage(),
+        // SwitchPage.id: (context) => const SwitchPage(),
+        // DropdownPage.id: (context) => const DropdownPage(),
+        // DatePickerPage.id: (context) => const DatePickerPage(),
+        // TimePickerPage.id: (context) => const TimePickerPage(),
+        // AboutPage.id: (context) => const AboutPage(),
       },
     );
   }

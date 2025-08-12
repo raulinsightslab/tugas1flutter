@@ -1,49 +1,41 @@
 import 'package:flutter/material.dart';
 
-class DropdownPage extends StatefulWidget {
-  static const String id = '/dropdown';
-
-  const DropdownPage({super.key});
+class Dropdown1 extends StatefulWidget {
+  const Dropdown1({super.key});
 
   @override
-  State<DropdownPage> createState() => _DropdownPageState();
+  State<Dropdown1> createState() => _Dropdown1State();
 }
 
-class _DropdownPageState extends State<DropdownPage> {
-  final List<String> categories = [
-    'Elektronik',
-    'Pakaian',
-    'Makanan',
-    'Lainnya',
-  ];
-  String? selectedCategory;
-
+class _Dropdown1State extends State<Dropdown1> {
+  String? dropdowndoang;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Pilih Kategori Produk')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: Center(
         child: Column(
           children: [
-            DropdownButton<String>(
-              hint: const Text('Pilih kategori'),
-              value: selectedCategory,
-              items: categories
-                  .map((cat) => DropdownMenuItem(value: cat, child: Text(cat)))
-                  .toList(),
+            DropdownButton(
+              value: dropdowndoang,
+              hint: Text("Pilih Kategori Produk"),
+              items: ["Elektronik", "Pakaian", "Makanan", "Lainnya"].map((
+                String value,
+              ) {
+                return DropdownMenuItem(value: value, child: Text(value));
+              }).toList(),
               onChanged: (value) {
                 setState(() {
-                  selectedCategory = value;
+                  // Text("Anda memilih kategori: $value");
                 });
+                dropdowndoang = value;
               },
             ),
-            const SizedBox(height: 20),
-            if (selectedCategory != null)
-              Text(
-                'Anda memilih kategori: $selectedCategory',
-                style: const TextStyle(fontSize: 16),
-              ),
+            SizedBox(height: 15),
+            Text(
+              dropdowndoang == null
+                  ? "Anda Belum Memilih"
+                  : "Anda Memilih $dropdowndoang",
+            ),
           ],
         ),
       ),

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CheckboxPage extends StatefulWidget {
-  const CheckboxPage({super.key});
+  const CheckboxPage({super.key, this.appBar});
+  final bool? appBar;
   static const id = "/Check";
 
   @override
@@ -13,20 +14,23 @@ class _CheckboxState extends State<CheckboxPage> {
 
   @override
   Widget build(BuildContext context) {
+    // final showAppBar = widget.appBar ?? true;
     return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(
-        backgroundColor: Color(0xFF0A0F24),
-        title: Text(
-          "Terms & Conditions",
-          style: TextStyle(
-            fontSize: 25,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-            fontFamily: "Orbitron",
-          ),
-        ),
-      ),
+      // appBar: showAppBar
+      //     ? AppBar(
+      //         backgroundColor: const Color(0xFF0A0F24),
+      //         title: const Text(
+      //           "Terms & Conditions",
+      //           style: TextStyle(
+      //             fontSize: 25,
+      //             fontWeight: FontWeight.bold,
+      //             color: Colors.white,
+      //             fontFamily: "Orbitron",
+      //           ),
+      //         ),
+      //       )
+      //     : null,
+      // drawer: showAppBar ? const Drawer() : null,
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -70,29 +74,16 @@ Pastikan Anda membaca seluruh ketentuan sebelum melanjutkan.""",
                 ),
                 Expanded(
                   child: Text(
-                    "Saya telah membaca dan menyetujui Terms & Conditions",
-                    style: TextStyle(fontSize: 14, color: Colors.white),
+                    isAgreed
+                        ? "Saya setuju dengan Terms & Conditions"
+                        : "Saya tidak setuju dengan Terms & Conditions",
+                    style: TextStyle(fontSize: 14, color: Colors.black),
                   ),
                 ),
               ],
             ),
+
             SizedBox(height: 12),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: isAgreed
-                    ? () {
-                        Navigator.pushNamed(context, '/nextPage');
-                      }
-                    : null,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: isAgreed ? Colors.blue : Colors.grey,
-                  foregroundColor: Colors.white,
-                  padding: EdgeInsets.symmetric(vertical: 14),
-                ),
-                child: Text("Lanjut", style: TextStyle(fontSize: 16)),
-              ),
-            ),
           ],
         ),
       ),

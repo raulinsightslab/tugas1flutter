@@ -18,29 +18,34 @@ class _DatePickerPageState extends State<DatePickerPage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Pilih Tanggal Lahir Anda:"),
-          SizedBox(height: 10),
+          const Text("Pilih Tanggal Lahir Anda:"),
+          const SizedBox(height: 10),
           Center(
             child: ElevatedButton(
-              child: Text("Pilih Tanggal Lahir Anda"),
+              child: const Text("Pilih Tanggal"),
               onPressed: () async {
                 final DateTime? tanggal = await showDatePicker(
                   context: context,
                   initialDate: DateTime.now(),
-                  firstDate: DateTime(1990),
-                  lastDate: DateTime(2050),
+                  firstDate: DateTime(1900),
+                  lastDate: DateTime(2100),
                 );
+
                 if (tanggal != null) {
-                  setState(() {});
-                  pilihtanggal = tanggal;
+                  setState(() {
+                    pilihtanggal = tanggal;
+                  });
                 }
               },
             ),
           ),
+          const SizedBox(height: 20),
           Text(
             pilihtanggal == null
-                ? "Pilih tanggal dulu"
-                : ("Tanggal Lahir Anda: ${DateFormat("dd MMMM yyyy", "id_ID").format(pilihtanggal!)}"),
+                ? "Belum ada tanggal dipilih"
+                : "Tanggal Lahir Anda:${DateFormat("EEEE, dd MMMM yyyy", "id_ID").format(pilihtanggal!)}",
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
           ),
         ],
       ),
