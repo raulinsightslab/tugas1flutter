@@ -26,7 +26,7 @@ class _DatePickerPageState extends State<DatePickerPage> {
               onPressed: () async {
                 final DateTime? tanggal = await showDatePicker(
                   context: context,
-                  initialDate: DateTime.now(),
+                  // initialDate: DateTime.now(),
                   firstDate: DateTime(1900),
                   lastDate: DateTime(2100),
                 );
