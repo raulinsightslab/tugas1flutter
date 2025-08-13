@@ -5,6 +5,9 @@ import 'package:tugas1flutter/Tugas_7/date.dart';
 import 'package:tugas1flutter/Tugas_7/dropdown.dart';
 import 'package:tugas1flutter/Tugas_7/switch.dart';
 import 'package:tugas1flutter/Tugas_7/time.dart';
+import 'package:tugas1flutter/Tugas_9/list.dart';
+import 'package:tugas1flutter/Tugas_9/listmap.dart';
+import 'package:tugas1flutter/Tugas_9/model.dart';
 import 'package:tugas1flutter/extension/navigation.dart';
 
 class CustomDrawer extends StatefulWidget {
@@ -23,6 +26,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
     Dropdown1(),
     DatePickerPage(),
     TimePickerPage(),
+    ListPage(),
+    ListMap(),
+    ModelPage(),
   ];
 
   void onItemTap(int index) {
@@ -39,6 +45,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
     "Catalogue",
     "Date of birth",
     "Time Picker",
+    "List",
+    "List Map",
+    "Model",
   ];
 
   @override
@@ -111,6 +120,30 @@ class _CustomDrawerState extends State<CustomDrawer> {
               title: Text("Time Picker", style: TextStyle(color: Colors.white)),
               onTap: () {
                 onItemTap(5);
+              },
+            ),
+
+            ListTile(
+              leading: Icon(Icons.list, color: Colors.white),
+              title: Text("List", style: TextStyle(color: Colors.white)),
+              onTap: () {
+                onItemTap(6);
+              },
+            ),
+
+            ListTile(
+              leading: Icon(Icons.map, color: Colors.white),
+              title: Text("List Map", style: TextStyle(color: Colors.white)),
+              onTap: () {
+                onItemTap(7);
+              },
+            ),
+
+            ListTile(
+              leading: Icon(Icons.model_training_outlined, color: Colors.white),
+              title: Text("Model", style: TextStyle(color: Colors.white)),
+              onTap: () {
+                onItemTap(8);
               },
             ),
 
