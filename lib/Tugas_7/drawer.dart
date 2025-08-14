@@ -47,7 +47,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
     "Time Picker",
     "List",
     "List Map",
-    "Model",
+    "Model Produk",
   ];
 
   @override

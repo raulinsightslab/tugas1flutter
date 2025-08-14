@@ -44,7 +44,7 @@ class _ModelPage extends State<ModelPage> {
       nama: "Mobil Bekas",
       price: "120.000.000",
       icon: Icons.directions_car,
-      image: ("assets/images/Laptop.jpg"),
+      image: ("assets/images/mobil.jpg"),
     ),
     ProdukModel(
       nama: "Meja Bekas",
@@ -83,15 +83,17 @@ class _ModelPage extends State<ModelPage> {
             itemCount: produkModel.length,
             itemBuilder: (BuildContext context, int index) {
               final dataProdukModel = produkModel[index];
-              return ListTile(
-                title: Text(dataProdukModel.nama),
-                subtitle: Text(dataProdukModel.price.toString()),
-                trailing: Icon(dataProdukModel.icon),
-                leading: Image.asset(
-                  dataProdukModel.image,
-                  width: 50,
-                  height: 50,
-                  fit: BoxFit.cover,
+              return Card(
+                child: ListTile(
+                  title: Text(dataProdukModel.nama),
+                  subtitle: Text(dataProdukModel.price.toString()),
+                  trailing: Icon(dataProdukModel.icon),
+                  leading: Image.asset(
+                    dataProdukModel.image,
+                    width: 50,
+                    height: 50,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               );
             },
