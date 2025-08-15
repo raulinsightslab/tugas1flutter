@@ -23,17 +23,17 @@ class _InputformPageState extends State<InputformPage> {
   // },
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF0A0F24),
-        title: const Text(
-          "Form Pendaftaran",
-          style: TextStyle(
-            fontFamily: "Orbitron",
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: const Color(0xFF0A0F24),
+      //   title: const Text(
+      //     "Form Pendaftaran",
+      //     style: TextStyle(
+      //       fontFamily: "Orbitron",
+      //       fontWeight: FontWeight.bold,
+      //       color: Colors.white,
+      //     ),
+      //   ),
+      // ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Form(

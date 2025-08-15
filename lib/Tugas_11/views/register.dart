@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:tugas1flutter/Tugas_11/model/user.dart';
 import 'package:tugas1flutter/Tugas_11/sqflite/db.dart';
+import 'package:tugas1flutter/Tugas_7/login_page.dart';
 import 'package:tugas1flutter/Tugas_8/botnavbar.dart';
 import 'package:tugas1flutter/extension/navigation.dart';
 
@@ -16,7 +17,7 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPage extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
-  final TextEditingController nameController = TextEditingController();
+  final TextEditingController _namecontroller = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool isLoading = false;
   bool _obscurePassword = true;
@@ -41,7 +42,7 @@ class _RegisterPage extends State<RegisterPage> {
                   child: Column(
                     children: [
                       Text(
-                        "Register Your Account",
+                        "Create Your Account",
                         style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
@@ -58,7 +59,7 @@ class _RegisterPage extends State<RegisterPage> {
                       ),
                       SizedBox(height: 10),
                       Text(
-                        "Let's Connect in More.",
+                        "Sign up to explore the ocean of opportunities.",
                         style: TextStyle(
                           fontSize: 14,
                           color: Colors.white70,
@@ -87,9 +88,29 @@ class _RegisterPage extends State<RegisterPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    //buat username
+                    //buat full name
                     Padding(padding: EdgeInsetsGeometry.only(top: 20)),
-                    Text('Username', style: TextStyle(color: Colors.white)),
+                    Text('Full Name', style: TextStyle(color: Colors.white)),
+                    SizedBox(height: 8),
+                    TextFormField(
+                      style: TextStyle(color: Colors.white),
+                      controller: _namecontroller,
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(
+                          vertical: 12,
+                          horizontal: 16,
+                        ),
+                        border: OutlineInputBorder(),
+                        fillColor: Color(0xFF1A2238),
+                        hint: Text(
+                          "Enter Your full name",
+                          style: TextStyle(color: Colors.white70),
+                        ),
+                      ),
+                    ),
+                    //buat email (sharknet id)
+                    Padding(padding: EdgeInsetsGeometry.only(top: 20)),
+                    Text('Email', style: TextStyle(color: Colors.white)),
                     SizedBox(height: 8),
                     TextFormField(
                       style: TextStyle(color: Colors.white),
@@ -102,7 +123,7 @@ class _RegisterPage extends State<RegisterPage> {
                         border: OutlineInputBorder(),
                         fillColor: Color(0xFF1A2238),
                         hint: Text(
-                          "Enter Your SharkNet ID",
+                          "Enter Your Email",
                           style: TextStyle(color: Colors.white70),
                         ),
                       ),
@@ -140,7 +161,7 @@ class _RegisterPage extends State<RegisterPage> {
                         ),
                       ),
                     ),
-                    //tombol login
+                    //tombol register
                     Padding(
                       padding: const EdgeInsets.only(top: 40),
                       child: SizedBox(
@@ -151,12 +172,7 @@ class _RegisterPage extends State<RegisterPage> {
                             backgroundColor: Colors.purpleAccent,
                           ),
                           onPressed: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //     builder: (context) => Tugas5Flutter(),
-                            //   ),
-                            // );
+                            final name = _namecontroller.text.trim();
                             final email = _emailController.text.trim();
                             final password = _passwordController.text;
 
@@ -180,15 +196,15 @@ class _RegisterPage extends State<RegisterPage> {
                                   );
                                 },
                               );
-                            } else if (password != '123456') {
+                            } else if (password.length != 6) {
                               showDialog(
                                 context: context,
                                 builder: (BuildContext context) {
                                   return AlertDialog(
-                                    title: Text(
-                                      "Invalid Email or Incorrect Password",
+                                    title: Text("Password Invalid"),
+                                    content: Text(
+                                      "Password harus mengandung 6 karakter.",
                                     ),
-                                    content: Text("Please try again."),
                                     actions: [
                                       TextButton(
                                         child: Text("OK"),
@@ -201,20 +217,15 @@ class _RegisterPage extends State<RegisterPage> {
                                 },
                               );
                             } else {
+                              registerUser();
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text('Login Succesful')),
+                                SnackBar(content: Text('Register Successful')),
                               );
-                              context.pushNamed(Botbar.id);
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (context) => InputWidget(),
-                              //   ),
-                              // );
+                              context.pushNamed(LoginPage.id);
                             }
                           },
                           child: Text(
-                            'Login',
+                            'Register',
                             style: TextStyle(fontSize: 18, color: Colors.white),
                           ),
                         ),
@@ -223,57 +234,68 @@ class _RegisterPage extends State<RegisterPage> {
                     const SizedBox(height: 20),
 
                     //buatgarisannya
-                    Row(
-                      children: [
-                        Expanded(child: Divider(color: Colors.white24)),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 8),
-                          child: Text(
-                            'Or continue with',
-                            style: TextStyle(color: Colors.white54),
-                          ),
-                        ),
-                        Expanded(child: Divider(color: Colors.white24)),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
+                    // Row(
+                    //   children: [
+                    //     Expanded(child: Divider(color: Colors.white24)),
+                    //     Padding(
+                    //       padding: EdgeInsets.symmetric(horizontal: 8),
+                    //       child: Text(
+                    //         'Or continue with',
+                    //         style: TextStyle(color: Colors.white54),
+                    //       ),
+                    //     ),
+                    //     Expanded(child: Divider(color: Colors.white24)),
+                    //   ],
+                    // ),
+                    // const SizedBox(height: 20),
 
-                    //buat login sosmed
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor: WidgetStatePropertyAll(
-                              Colors.black,
-                            ),
-                          ),
-                          onPressed: () {},
-                          child: _socialButton('assets/images/icon_google.png'),
+                    // //buat login sosmed
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //   children: [
+                    //     ElevatedButton(
+                    //       style: ButtonStyle(
+                    //         backgroundColor: WidgetStatePropertyAll(
+                    //           Colors.black,
+                    //         ),
+                    //       ),
+                    //       onPressed: () {},
+                    //       child: _socialButton('assets/images/icon_google.png'),
+                    //     ),
+                    //     ElevatedButton(
+                    //       style: ButtonStyle(
+                    //         backgroundColor: WidgetStatePropertyAll(
+                    //           Colors.black,
+                    //         ),
+                    //       ),
+                    //       onPressed: () {},
+                    //       child: _socialButton('assets/images/icon_apple.png'),
+                    //     ),
+                    //     ElevatedButton(
+                    //       style: ButtonStyle(
+                    //         backgroundColor: WidgetStatePropertyAll(
+                    //           Colors.black,
+                    //         ),
+                    //       ),
+                    //       onPressed: () {},
+                    //       child: _socialButton(
+                    //         'assets/images/icon_twitter.png',
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                    // const SizedBox(height: 10),
+                    Center(
+                      child: TextButton(
+                        onPressed: () {
+                          context.pushNamed(LoginPage.id);
+                        },
+                        child: Text(
+                          "Already have an account? login here",
+                          style: TextStyle(color: Colors.white54),
                         ),
-                        ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor: WidgetStatePropertyAll(
-                              Colors.black,
-                            ),
-                          ),
-                          onPressed: () {},
-                          child: _socialButton('assets/images/icon_apple.png'),
-                        ),
-                        ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor: WidgetStatePropertyAll(
-                              Colors.black,
-                            ),
-                          ),
-                          onPressed: () {},
-                          child: _socialButton(
-                            'assets/images/icon_twitter.png',
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
-                    const SizedBox(height: 40),
                   ],
                 ),
               ),
@@ -289,7 +311,7 @@ class _RegisterPage extends State<RegisterPage> {
     setState(() {});
     final email = _emailController.text.trim();
     final password = _passwordController.text.trim();
-    final name = nameController.text.trim();
+    final name = _namecontroller.text.trim();
     if (email.isEmpty || password.isEmpty || name.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -297,6 +319,7 @@ class _RegisterPage extends State<RegisterPage> {
         ),
       );
       isLoading = false;
+
       return;
     }
     final user = User(email: email, password: password, name: name);
@@ -311,21 +334,21 @@ class _RegisterPage extends State<RegisterPage> {
     isLoading = false;
   }
 
-  Widget _socialButton(String assetPath) {
-    return Container(
-      width: 60,
-      height: 60,
-      padding: EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Image.asset(
-        assetPath,
-        errorBuilder: (context, error, stackTrace) {
-          return const Icon(Icons.error, color: Colors.red);
-        },
-      ),
-    );
-  }
+  // Widget _socialButton(String assetPath) {
+  //   return Container(
+  //     width: 60,
+  //     height: 60,
+  //     padding: EdgeInsets.all(12),
+  //     decoration: BoxDecoration(
+  //       color: Colors.white,
+  //       borderRadius: BorderRadius.circular(12),
+  //     ),
+  //     child: Image.asset(
+  //       assetPath,
+  //       errorBuilder: (context, error, stackTrace) {
+  //         return const Icon(Icons.error, color: Colors.red);
+  //       },
+  //     ),
+  //   );
+  // }
 }

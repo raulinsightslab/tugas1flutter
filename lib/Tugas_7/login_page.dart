@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:tugas1flutter/Tugas_11/sqflite/db.dart';
 import 'package:tugas1flutter/Tugas_11/views/register.dart';
 import 'package:tugas1flutter/Tugas_8/botnavbar.dart';
 import 'package:tugas1flutter/extension/navigation.dart';
@@ -85,9 +86,9 @@ class _LoginPage extends State<LoginPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    //buat username
+                    //buat email
                     Padding(padding: EdgeInsetsGeometry.only(top: 20)),
-                    Text('Username', style: TextStyle(color: Colors.white)),
+                    Text('Email', style: TextStyle(color: Colors.white)),
                     SizedBox(height: 8),
                     TextFormField(
                       style: TextStyle(color: Colors.white),
@@ -100,7 +101,7 @@ class _LoginPage extends State<LoginPage> {
                         border: OutlineInputBorder(),
                         fillColor: Color(0xFF1A2238),
                         hint: Text(
-                          "Enter Your SharkNet ID",
+                          "Enter Your Email",
                           style: TextStyle(color: Colors.white70),
                         ),
                       ),
@@ -148,55 +149,63 @@ class _LoginPage extends State<LoginPage> {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.purpleAccent,
                           ),
-                          onPressed: () {
+                          onPressed: () async {
                             final email = _emailController.text.trim();
                             final password = _passwordController.text;
 
-                            if (email.isEmpty) {
+                            if (email.isEmpty || password.isEmpty) {
                               showDialog(
                                 context: context,
                                 builder: (BuildContext context) {
                                   return AlertDialog(
-                                    title: Text("Invalid Email"),
+                                    title: Text("invalid Input"),
                                     content: Text(
-                                      "Please enter a valid email.",
+                                      "Email dan Password tidak boleh kosong",
                                     ),
                                     actions: [
                                       TextButton(
+                                        onPressed: () =>
+                                            Navigator.of(context).pop,
                                         child: Text("OK"),
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
                                       ),
                                     ],
                                   );
                                 },
                               );
-                            } else if (password.length != 6) {
-                              showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                    title: Text("Password Invalid"),
-                                    content: Text(
-                                      "Password harus tepat 6 karakter.",
-                                    ),
-                                    actions: [
-                                      TextButton(
-                                        child: Text("OK"),
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-                            } else {
+                              return;
+                            }
+                            final user = await DbHelper.loginUser(
+                              email,
+                              password,
+                            );
+                            if (user != null) {
+                              // Login sukses → pindah ke halaman berikutnya
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text('Login Successful')),
+                                SnackBar(
+                                  content: Text(
+                                    'Login Successful, Welcome ${user.name}!',
+                                  ),
+                                ),
                               );
                               context.pushNamed(Botbar.id);
+                            } else {
+                              // Login gagal
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text("Login Failed"),
+                                    content: Text("Email atau password salah."),
+                                    actions: [
+                                      TextButton(
+                                        child: Text("OK"),
+                                        onPressed: () =>
+                                            Navigator.of(context).pop(),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
                             }
                           },
 

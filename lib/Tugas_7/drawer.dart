@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tugas1flutter/Tugas_10/inputform.dart';
 import 'package:tugas1flutter/Tugas_7/Dashboard.dart';
 import 'package:tugas1flutter/Tugas_7/checkbox.dart';
 import 'package:tugas1flutter/Tugas_7/date.dart';
@@ -29,6 +30,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
     ListPage(),
     ListMap(),
     ModelPage(),
+    InputformPage(),
   ];
 
   void onItemTap(int index) {
@@ -48,6 +50,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
     "List",
     "List Map",
     "Model Produk",
+    "Form",
   ];
 
   @override
@@ -144,6 +147,16 @@ class _CustomDrawerState extends State<CustomDrawer> {
               title: Text("Model", style: TextStyle(color: Colors.white)),
               onTap: () {
                 onItemTap(8);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.model_training_outlined, color: Colors.white),
+              title: Text(
+                "Form Pendaftaran",
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                onItemTap(9);
               },
             ),
 
