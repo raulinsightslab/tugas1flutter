@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:tugas1flutter/Tugas_11/views/register.dart';
+import 'package:tugas1flutter/Tugas_11/model/user.dart';
+import 'package:tugas1flutter/Tugas_11/sqflite/db.dart';
 import 'package:tugas1flutter/Tugas_8/botnavbar.dart';
 import 'package:tugas1flutter/extension/navigation.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
-  static const id = "/login";
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
+  static const id = "/register";
 
   @override
-  State<LoginPage> createState() => _LoginPage();
+  State<RegisterPage> createState() => _RegisterPage();
 }
 
-class _LoginPage extends State<LoginPage> {
+class _RegisterPage extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
-  bool isVisibility = false;
-  bool _obscurePassword = true;
   final TextEditingController _emailController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  bool isVisbility = false;
+  bool isLoading = false;
+  bool _obscurePassword = true;
+  bool isVisibility = false;
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +41,9 @@ class _LoginPage extends State<LoginPage> {
                   child: Column(
                     children: [
                       Text(
-                        "Dive Into SharkNet",
+                        "Register Your Account",
                         style: TextStyle(
-                          fontSize: 35,
+                          fontSize: 30,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                           fontFamily: "Orbitron",
@@ -56,7 +58,7 @@ class _LoginPage extends State<LoginPage> {
                       ),
                       SizedBox(height: 10),
                       Text(
-                        "Make Waves. Explore More.",
+                        "Let's Connect in More.",
                         style: TextStyle(
                           fontSize: 14,
                           color: Colors.white70,
@@ -149,6 +151,12 @@ class _LoginPage extends State<LoginPage> {
                             backgroundColor: Colors.purpleAccent,
                           ),
                           onPressed: () {
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (context) => Tugas5Flutter(),
+                            //   ),
+                            // );
                             final email = _emailController.text.trim();
                             final password = _passwordController.text;
 
@@ -172,15 +180,15 @@ class _LoginPage extends State<LoginPage> {
                                   );
                                 },
                               );
-                            } else if (password.length != 6) {
+                            } else if (password != '123456') {
                               showDialog(
                                 context: context,
                                 builder: (BuildContext context) {
                                   return AlertDialog(
-                                    title: Text("Password Invalid"),
-                                    content: Text(
-                                      "Password harus tepat 6 karakter.",
+                                    title: Text(
+                                      "Invalid Email or Incorrect Password",
                                     ),
+                                    content: Text("Please try again."),
                                     actions: [
                                       TextButton(
                                         child: Text("OK"),
@@ -194,12 +202,17 @@ class _LoginPage extends State<LoginPage> {
                               );
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text('Login Successful')),
+                                SnackBar(content: Text('Login Succesful')),
                               );
                               context.pushNamed(Botbar.id);
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) => InputWidget(),
+                              //   ),
+                              // );
                             }
                           },
-
                           child: Text(
                             'Login',
                             style: TextStyle(fontSize: 18, color: Colors.white),
@@ -261,18 +274,6 @@ class _LoginPage extends State<LoginPage> {
                       ],
                     ),
                     const SizedBox(height: 40),
-
-                    Center(
-                      child: TextButton(
-                        onPressed: () {
-                          context.pushNamed(RegisterPage.id);
-                        },
-                        child: Text(
-                          "Don't have an account? Register here",
-                          style: TextStyle(color: Colors.white54),
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ),
@@ -281,6 +282,33 @@ class _LoginPage extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  void registerUser() async {
+    isLoading = true;
+    setState(() {});
+    final email = _emailController.text.trim();
+    final password = _passwordController.text.trim();
+    final name = nameController.text.trim();
+    if (email.isEmpty || password.isEmpty || name.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Email, Password, dan Nama tidak boleh kosong"),
+        ),
+      );
+      isLoading = false;
+      return;
+    }
+    final user = User(email: email, password: password, name: name);
+    await DbHelper.registerUser(user);
+    Future.delayed(const Duration(seconds: 1)).then((value) {
+      isLoading = false;
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("Pendaftaran berhasil")));
+    });
+    setState(() {});
+    isLoading = false;
   }
 
   Widget _socialButton(String assetPath) {

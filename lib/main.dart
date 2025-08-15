@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:tugas1flutter/Tugas_11/views/register.dart';
 import 'package:tugas1flutter/Tugas_7/login_page.dart';
 import 'package:tugas1flutter/Tugas_8/botnavbar.dart';
 
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
       initialRoute: "/login",
       routes: {
         "/login": (context) => LoginPage(),
+        RegisterPage.id: (context) => RegisterPage(),
         // DashboardPage.id: (context) => DashboardPage(),
         Botbar.id: (context) => Botbar(),
 

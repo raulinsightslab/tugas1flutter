@@ -26,7 +26,7 @@ class _InputformPageState extends State<InputformPage> {
       appBar: AppBar(
         backgroundColor: const Color(0xFF0A0F24),
         title: const Text(
-          "Masukkan Form Pendaftaran",
+          "Form Pendaftaran",
           style: TextStyle(
             fontFamily: "Orbitron",
             fontWeight: FontWeight.bold,
@@ -93,19 +93,19 @@ class _InputformPageState extends State<InputformPage> {
 
               Text(
                 nameController.text,
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
               ),
               Text(
                 emailController.text,
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
               ),
               Text(
                 phoneController.text,
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
               ),
               Text(
                 domController.text,
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
               ),
               SizedBox(
                 width: double.infinity,
