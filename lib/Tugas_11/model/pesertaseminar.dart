@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 class SeminarForm {
+  final int? id;
   final String namaPeserta;
   final String email;
   final String seminar;
@@ -11,6 +12,7 @@ class SeminarForm {
     required this.email,
     required this.seminar,
     required this.kota,
+    this.id,
   });
 
   Map<String, dynamic> toMap() {
@@ -19,6 +21,7 @@ class SeminarForm {
       'email': email,
       'seminar': seminar,
       'kota': kota,
+      'id': id,
     };
   }
 
@@ -28,6 +31,7 @@ class SeminarForm {
       email: map['email'],
       seminar: map['seminar'],
       kota: map['kota'],
+      id: map['id'],
     );
   }
 

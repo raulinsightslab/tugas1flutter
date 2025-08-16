@@ -5,6 +5,7 @@ import 'package:tugas1flutter/Tugas_11/sqflite/db.dart';
 
 class SeminarFormScreen extends StatefulWidget {
   const SeminarFormScreen({super.key});
+  static const id = "/formseminar";
 
   @override
   State<SeminarFormScreen> createState() => _SeminarFormScreenState();
@@ -21,7 +22,7 @@ class _SeminarFormScreenState extends State<SeminarFormScreen> {
   @override
   void initState() {
     super.initState();
-    ();
+    getSeminars(); // ambil data saat pertama kali masuk halaman
   }
 
   Future<void> getSeminars() async {
@@ -31,6 +32,13 @@ class _SeminarFormScreenState extends State<SeminarFormScreen> {
     });
   }
 
+  void clearForm() {
+    namaController.clear();
+    emailController.clear();
+    seminarController.clear();
+    kotaController.clear();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,6 +46,7 @@ class _SeminarFormScreenState extends State<SeminarFormScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            // FORM INPUT
             TextFormConst(hintText: "Nama Peserta", controller: namaController),
             TextFormConst(hintText: "Email", controller: emailController),
             TextFormConst(
@@ -46,12 +55,14 @@ class _SeminarFormScreenState extends State<SeminarFormScreen> {
             ),
             TextFormConst(hintText: "Asal Kota", controller: kotaController),
             const SizedBox(height: 10),
+
             ElevatedButton(
               onPressed: () async {
                 final nama = namaController.text.trim();
                 final email = emailController.text.trim();
                 final seminar = seminarController.text.trim();
                 final kota = kotaController.text.trim();
+
                 if (nama.isEmpty ||
                     email.isEmpty ||
                     seminar.isEmpty ||
@@ -61,41 +72,32 @@ class _SeminarFormScreenState extends State<SeminarFormScreen> {
                   );
                   return;
                 }
+
                 await DbHelper.insertSeminar(
                   namaPeserta: nama,
                   email: email,
                   seminar: seminar,
                   kota: kota,
                 );
+
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     content: Text("Data seminar berhasil disimpan"),
                   ),
                 );
-                namaController.clear();
-                emailController.clear();
-                seminarController.clear();
-                kotaController.clear();
+
+                clearForm();
                 getSeminars();
               },
-
-              child: Text(
+              child: const Text(
                 "Daftar Seminar",
-                style: TextStyle(color: Colors.white54),
+                style: TextStyle(color: Colors.white),
               ),
-              // child: Center(
-              //   child: TextButton(
-              //     onPressed: () {
-              //       context.pushNamed(SeminarList.id);
-              //     },
-              //     child: Text(
-              //       "Daftar Seminar",
-              //       style: TextStyle(color: Colors.white54),
-              //     ),
-              //   ),
-              // ),
             ),
-            SizedBox(height: 20),
+
+            const SizedBox(height: 20),
+
+            // LIST SEMINAR
             ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
@@ -104,10 +106,94 @@ class _SeminarFormScreenState extends State<SeminarFormScreen> {
                 final dataSeminar = seminars[index];
                 return ListTile(
                   title: Text(dataSeminar.namaPeserta),
-                  subtitle: Text(
-                    "${dataSeminar.seminar} - ${dataSeminar.kota}",
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("${dataSeminar.seminar} - ${dataSeminar.kota}"),
+                      Text(dataSeminar.email),
+                    ],
                   ),
-                  trailing: Text(dataSeminar.email),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      // EDIT BUTTON
+                      IconButton(
+                        onPressed: () {
+                          namaController.text = dataSeminar.namaPeserta;
+                          emailController.text = dataSeminar.email;
+                          seminarController.text = dataSeminar.seminar;
+                          kotaController.text = dataSeminar.kota;
+
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: const Text('Edit Data'),
+                              content: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  TextFormConst(
+                                    controller: namaController,
+                                    hintText: 'Nama',
+                                  ),
+                                  const SizedBox(height: 12),
+                                  TextFormConst(
+                                    controller: emailController,
+                                    hintText: 'Email',
+                                  ),
+                                  const SizedBox(height: 12),
+                                  TextFormConst(
+                                    controller: seminarController,
+                                    hintText: 'Seminar',
+                                  ),
+                                  const SizedBox(height: 12),
+                                  TextFormConst(
+                                    controller: kotaController,
+                                    hintText: 'Kota',
+                                  ),
+                                ],
+                              ),
+                              actions: [
+                                ElevatedButton(
+                                  onPressed: () async {
+                                    final updatedData = SeminarForm(
+                                      id: dataSeminar.id,
+                                      namaPeserta: namaController.text.trim(),
+                                      email: emailController.text.trim(),
+                                      seminar: seminarController.text.trim(),
+                                      kota: kotaController.text.trim(),
+                                    );
+
+                                    await DbHelper.updateSeminars(updatedData);
+                                    Navigator.pop(context);
+                                    getSeminars();
+                                    clearForm();
+                                  },
+                                  child: const Text('Simpan'),
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                    clearForm();
+                                  },
+                                  child: const Text('Batal'),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                        icon: const Icon(Icons.edit),
+                      ),
+
+                      // DELETE BUTTON
+                      IconButton(
+                        onPressed: () async {
+                          await DbHelper.deleteSeminar(dataSeminar.id as int);
+                          getSeminars();
+                        },
+                        icon: const Icon(Icons.delete),
+                      ),
+                    ],
+                  ),
                 );
               },
             ),

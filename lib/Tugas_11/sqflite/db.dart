@@ -1,5 +1,6 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:tugas1flutter/Tugas_11/model/pesertaseminar.dart';
 import 'package:tugas1flutter/Tugas_11/model/user.dart';
 
 class DbHelper {
@@ -85,6 +86,16 @@ class DbHelper {
     return await db.delete('seminar', where: 'id = ?', whereArgs: [id]);
   }
 
+  static Future<int> updateSeminars(SeminarForm seminar) async {
+    final db = await databaseHelper();
+    return await db.update(
+      'seminar',
+      seminar.toMap(),
+      where: 'id = ?',
+      whereArgs: [seminar.id],
+    );
+  }
+
   static Future<int> updateSeminar(
     int id, {
     required String namaPeserta,
@@ -104,5 +115,21 @@ class DbHelper {
       where: 'id = ?',
       whereArgs: [id],
     );
+  }
+
+  static Future<void> Updateseminar(User user) async {
+    final db = await databaseHelper();
+    await db.update(
+      'users',
+      user.toMap(),
+      where: 'id = ?',
+      whereArgs: [user.id],
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
+
+  static Future<void> deleteUser(int id) async {
+    final db = await databaseHelper();
+    await db.delete('users', where: 'id = ?', whereArgs: [id]);
   }
 }
