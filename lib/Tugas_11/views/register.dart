@@ -3,7 +3,6 @@ import 'package:lottie/lottie.dart';
 import 'package:tugas1flutter/Tugas_11/model/user.dart';
 import 'package:tugas1flutter/Tugas_11/sqflite/db.dart';
 import 'package:tugas1flutter/Tugas_7/login_page.dart';
-import 'package:tugas1flutter/Tugas_8/botnavbar.dart';
 import 'package:tugas1flutter/extension/navigation.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -16,8 +15,8 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPage extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _namecontroller = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool isLoading = false;
   bool _obscurePassword = true;
