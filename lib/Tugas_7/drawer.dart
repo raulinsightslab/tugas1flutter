@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tugas1flutter/Tugas_10/inputform.dart';
+import 'package:tugas1flutter/Tugas_14/view/get_api.dart';
 import 'package:tugas1flutter/Tugas_7/Dashboard.dart';
 import 'package:tugas1flutter/Tugas_7/checkbox.dart';
 import 'package:tugas1flutter/Tugas_7/date.dart';
@@ -31,6 +32,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
     ListMap(),
     ModelPage(),
     InputformPage(),
+    Tugas14API(),
   ];
 
   void onItemTap(int index) {
@@ -157,6 +159,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
               ),
               onTap: () {
                 onItemTap(9);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.api_outlined, color: Colors.white),
+              title: Text("Data API", style: TextStyle(color: Colors.white)),
+              onTap: () {
+                onItemTap(10);
               },
             ),
 

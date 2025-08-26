@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:tugas1flutter/Tugas_11/views/register.dart';
+import 'package:tugas1flutter/Tugas_14/view/details.dart';
+import 'package:tugas1flutter/Tugas_14/view/get_api.dart';
 import 'package:tugas1flutter/Tugas_7/login_page.dart';
 import 'package:tugas1flutter/Tugas_8/botnavbar.dart';
 
@@ -40,21 +42,26 @@ class MyApp extends StatelessWidget {
           seedColor: const Color.fromARGB(255, 3, 3, 3),
         ),
       ),
-      initialRoute: "/login",
-      routes: {
-        "/login": (context) => LoginPage(),
-        RegisterPage.id: (context) => RegisterPage(),
-        // DashboardPage.id: (context) => DashboardPage(),
-        Botbar.id: (context) => Botbar(),
+      // initialRoute: "/login",
+      // routes: {
+      //   "/login": (context) => LoginPage(),
+      //   RegisterPage.id: (context) => RegisterPage(),
+      //   Botbar.id: (context) => Botbar(),
 
-        // DashboardPage.id: (context) => const DashboardPage(),
-        // CheckboxPage.id: (context) => const CheckboxPage(),
-        // SwitchPage.id: (context) => const SwitchPage(),
-        // DropdownPage.id: (context) => const DropdownPage(),
-        // DatePickerPage.id: (context) => const DatePickerPage(),
-        // TimePickerPage.id: (context) => const TimePickerPage(),
-        // AboutPage.id: (context) => const AboutPage(),
-      },
+      // DashboardPage.id: (context) => const DashboardPage(),
+      // CheckboxPage.id: (context) => const CheckboxPage(),
+      // SwitchPage.id: (context) => const SwitchPage(),
+      // DropdownPage.id: (context) => const DropdownPage(),
+      // DatePickerPage.id: (context) => const DatePickerPage(),
+      // TimePickerPage.id: (context) => const TimePickerPage(),
+      // AboutPage.id: (context) => const AboutPage(),
+      // },
+      // initialRoute: "/page_API",
+      // routes: {
+      //   "/page_API": (context) => Tugas14API(),
+      //   DetailPage.id: (context) => DetailPage(),
+      // },
+      home: Tugas14API(),
     );
   }
 }

@@ -35,7 +35,7 @@ class DbHelper {
 
   static Future<User?> loginUser(String email, String password) async {
     final db = await databaseHelper();
-    final List<Map<String, dynamic>> results = await db.query(
+    final results = await db.query(
       'users',
       where: 'email = ? AND password = ?',
       whereArgs: [email, password],
@@ -49,8 +49,25 @@ class DbHelper {
 
   static Future<List<User>> getAllUsers() async {
     final db = await databaseHelper();
-    final List<Map<String, dynamic>> results = await db.query('users');
+    final results = await db.query('users');
     return results.map((e) => User.fromMap(e)).toList();
+  }
+
+  // ⚠️ namanya tetap "Updateseminar", meskipun sebenarnya update users
+  static Future<int> Updateseminar(User user) async {
+    final db = await databaseHelper();
+    return await db.update(
+      'users',
+      user.toMap(),
+      where: 'id = ?',
+      whereArgs: [user.id],
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
+
+  static Future<int> deleteUser(int id) async {
+    final db = await databaseHelper();
+    return await db.delete('users', where: 'id = ?', whereArgs: [id]);
   }
 
   // ------------------ SEMINAR ------------------
@@ -96,40 +113,24 @@ class DbHelper {
     );
   }
 
-  static Future<int> updateSeminar(
-    int id, {
-    required String namaPeserta,
-    required String email,
-    required String seminar,
-    required String kota,
-  }) async {
-    final db = await databaseHelper();
-    return await db.update(
-      'seminar',
-      {
-        'nama_peserta': namaPeserta,
-        'email': email,
-        'seminar': seminar,
-        'kota': kota,
-      },
-      where: 'id = ?',
-      whereArgs: [id],
-    );
-  }
-
-  static Future<void> Updateseminar(User user) async {
-    final db = await databaseHelper();
-    await db.update(
-      'users',
-      user.toMap(),
-      where: 'id = ?',
-      whereArgs: [user.id],
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
-  }
-
-  static Future<void> deleteUser(int id) async {
-    final db = await databaseHelper();
-    await db.delete('users', where: 'id = ?', whereArgs: [id]);
-  }
+  // static Future<int> updateSeminar(
+  //   int id, {
+  //   required String namaPeserta,
+  //   required String email,
+  //   required String seminar,
+  //   required String kota,
+  // }) async {
+  //   final db = await databaseHelper();
+  //   return await db.update(
+  //     'seminar',
+  //     {
+  //       'nama_peserta': namaPeserta,
+  //       'email': email,
+  //       'seminar': seminar,
+  //       'kota': kota,
+  //     },
+  //     where: 'id = ?',
+  //     whereArgs: [id],
+  //   );
+  // }?\
 }
