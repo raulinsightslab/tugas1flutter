@@ -1,6 +1,6 @@
+import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import 'package:http/http.dart' as http;
 import 'package:tugas1flutter/Tugas_14/model/user_model.dart';
 
 Future<List<Welcome>> getUser() async {

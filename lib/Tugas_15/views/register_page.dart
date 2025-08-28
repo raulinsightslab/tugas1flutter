@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:tugas1flutter/Tugas_11/model/user.dart';
-import 'package:tugas1flutter/Tugas_11/sqflite/db.dart';
-import 'package:tugas1flutter/Tugas_7/login_page.dart';
+import 'package:tugas1flutter/Tugas_15/api/register.dart';
+import 'package:tugas1flutter/Tugas_15/model/register_model.dart';
+import 'package:tugas1flutter/Tugas_15/views/login_page.dart';
 import 'package:tugas1flutter/extension/navigation.dart';
+import 'package:tugas1flutter/preference/preference.dart';
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
-  static const id = "/register1";
+class RegisterPage1 extends StatefulWidget {
+  const RegisterPage1({super.key});
+  static const id = "/register";
 
   @override
-  State<RegisterPage> createState() => _RegisterPage();
+  State<RegisterPage1> createState() => _RegisterPage1();
 }
 
-class _RegisterPage extends State<RegisterPage> {
+class _RegisterPage1 extends State<RegisterPage1> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _namecontroller = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool isLoading = false;
-  bool _obscurePassword = true;
+  bool _obscurePasssword = true;
   bool isVisibility = false;
+  RegisterUserModel? user;
+  String? errorMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -134,7 +137,7 @@ class _RegisterPage extends State<RegisterPage> {
                     TextFormField(
                       style: TextStyle(color: Colors.white),
                       controller: _passwordController,
-                      obscureText: _obscurePassword,
+                      obscureText: _obscurePasssword,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         contentPadding: EdgeInsets.symmetric(
@@ -147,14 +150,14 @@ class _RegisterPage extends State<RegisterPage> {
                         ),
                         suffixIcon: IconButton(
                           icon: Icon(
-                            _obscurePassword
+                            _obscurePasssword
                                 ? Icons.visibility_off
                                 : Icons.visibility,
                             color: Colors.white,
                           ),
                           onPressed: () {
                             setState(() {
-                              _obscurePassword = !_obscurePassword;
+                              _obscurePasssword = !_obscurePasssword;
                             });
                           },
                         ),
@@ -174,54 +177,55 @@ class _RegisterPage extends State<RegisterPage> {
                             final name = _namecontroller.text.trim();
                             final email = _emailController.text.trim();
                             final password = _passwordController.text;
+                            registerUser();
 
-                            if (email.isEmpty) {
-                              showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                    title: Text("Invalid Email"),
-                                    content: Text(
-                                      "Please enter a valid email.",
-                                    ),
-                                    actions: [
-                                      TextButton(
-                                        child: Text("OK"),
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-                            } else if (password.length != 6) {
-                              showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                    title: Text("Password Invalid"),
-                                    content: Text(
-                                      "Password harus mengandung 6 karakter.",
-                                    ),
-                                    actions: [
-                                      TextButton(
-                                        child: Text("OK"),
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-                            } else {
-                              registerUser();
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text('Register Successful')),
-                              );
-                              context.pushNamed(LoginPage.id);
-                            }
+                            // if (email.isEmpty) {
+                            //   showDialog(
+                            //     context: context,
+                            //     builder: (BuildContext context) {
+                            //       return AlertDialog(
+                            //         title: Text("Invalid Email"),
+                            //         content: Text(
+                            //           "Please enter a valid email.",
+                            //         ),
+                            //         actions: [
+                            //           TextButton(
+                            //             child: Text("OK"),
+                            //             onPressed: () {
+                            //               Navigator.of(context).pop();
+                            //             },
+                            //           ),
+                            //         ],
+                            //       );
+                            //     },
+                            //   );
+                            // } else if (password.length != 6) {
+                            //   showDialog(
+                            //     context: context,
+                            //     builder: (BuildContext context) {
+                            //       return AlertDialog(
+                            //         title: Text("Password Invalid"),
+                            //         content: Text(
+                            //           "Password harus mengandung 6 karakter.",
+                            //         ),
+                            //         actions: [
+                            //           TextButton(
+                            //             child: Text("OK"),
+                            //             onPressed: () {
+                            //               Navigator.of(context).pop();
+                            //             },
+                            //           ),
+                            //         ],
+                            //       );
+                            //     },
+                            //   );
+                            // } else {
+                            //   registerUser();
+                            //   ScaffoldMessenger.of(context).showSnackBar(
+                            //     SnackBar(content: Text('Register Successful')),
+                            //   );
+                            //   context.pushNamed(LoginPage1.id);
+                            // }
                           },
                           child: Text(
                             'Register',
@@ -287,7 +291,7 @@ class _RegisterPage extends State<RegisterPage> {
                     Center(
                       child: TextButton(
                         onPressed: () {
-                          context.pushNamed(LoginPage.id);
+                          context.pop(LoginPage1.id);
                         },
                         child: Text(
                           "Already have an account? login here",
@@ -306,8 +310,10 @@ class _RegisterPage extends State<RegisterPage> {
   }
 
   void registerUser() async {
-    isLoading = true;
-    setState(() {});
+    setState(() {
+      isLoading = true;
+      errorMessage = null;
+    });
     final email = _emailController.text.trim();
     final password = _passwordController.text.trim();
     final name = _namecontroller.text.trim();
@@ -321,16 +327,42 @@ class _RegisterPage extends State<RegisterPage> {
 
       return;
     }
-    final user = User(email: email, password: password, name: name);
-    await DbHelper.registerUser(user);
-    Future.delayed(const Duration(seconds: 1)).then((value) {
-      isLoading = false;
+    // final user = User(email: email, password: password, name: name);
+    // await DbHelper.registerUser(user);
+    // Future.delayed(const Duration(seconds: 1)).then((value) {
+    //   isLoading = false;
+    //   ScaffoldMessenger.of(
+    //     context,
+    //   ).showSnackBar(const SnackBar(content: Text("Pendaftaran berhasil")));
+    // });
+    // setState(() {});
+    // isLoading = false;
+    try {
+      final result = await AuthenticationAPI.registerUser(
+        email: email,
+        password: password,
+        name: name,
+      );
+      setState(() {
+        user = result;
+      });
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(const SnackBar(content: Text("Pendaftaran berhasil")));
-    });
-    setState(() {});
-    isLoading = false;
+      PreferenceHandler.saveToken(user?.data.token.toString() ?? "");
+      print(user?.toJson());
+    } catch (e) {
+      print(e);
+      setState(() {
+        errorMessage = e.toString();
+      });
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(errorMessage.toString())));
+    } finally {
+      setState(() {});
+      isLoading = false;
+    }
   }
 
   // Widget _socialButton(String assetPath) {

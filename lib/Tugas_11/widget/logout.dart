@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tugas1flutter/Tugas_11/preference/preference.dart';
+import 'package:tugas1flutter/preference/preference.dart';
 import 'package:tugas1flutter/Tugas_7/login_page.dart';
 import 'package:tugas1flutter/extension/navigation.dart';
 

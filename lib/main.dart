@@ -3,6 +3,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:tugas1flutter/Tugas_11/views/register.dart';
 import 'package:tugas1flutter/Tugas_14/view/details.dart';
 import 'package:tugas1flutter/Tugas_14/view/get_api.dart';
+import 'package:tugas1flutter/Tugas_15/views/login_page.dart';
 import 'package:tugas1flutter/Tugas_7/login_page.dart';
 import 'package:tugas1flutter/Tugas_8/botnavbar.dart';
 
@@ -61,7 +62,7 @@ class MyApp extends StatelessWidget {
       //   "/page_API": (context) => Tugas14API(),
       //   DetailPage.id: (context) => DetailPage(),
       // },
-      home: Tugas14API(),
+      home: LoginPage1(),
     );
   }
 }
